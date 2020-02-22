@@ -12,7 +12,7 @@
         \maketitle
     \end{frame}
 
-    \begin{frame}{递归方程的求解方法}
+    \begin{frame}{递推方程的求解方法}
         \begin{itemize}
             \setlength{\itemsep}{1em}
             \item 迭代法
@@ -43,7 +43,7 @@
             \end{itemize}
     \end{frame}
 
-    \begin{frame}
+    \begin{frame}{迭代法}
         \begin{itemize}
             \item 差消迭代：快速排序平均时间分析\\
             $T(n)=\frac{2}{n}\sum\limits_{i=1}^{n-1}T(i)+cn, n\geq 2, T(1) = 0$
@@ -112,7 +112,7 @@
     \end{itemize}
     \end{frame}
 
-    \begin{frame}{主定理的证明}
+    \begin{frame}{主定理(Master Theorem)的证明}
     \begin{itemize}
     \item 下面引入$\lceil\rceil$和$\lfloor\rfloor$将$n$推广到非$b$的幂的情形，即$T(n)=aT(\lceil n/b\rceil)+f(n)$和$T(n)=aT(\lfloor n/b\rfloor)+f(n)$
     \item 设$n_j=\begin{cases}n,\quad if\ j = 0\\ \lceil n_{j-1}/b\rceil,else\end{cases}$, 由于$\lceil x\rceil\leq x+1$, $n_j\leq \frac{n}{b^j}+\sum\limits_{i=0}^{j-1}\frac{1}{b^i}<\frac{n}{b^j}+\sum\limits_{i=0}^{\infty}\frac{1}{b^i}=\frac{n}{b^j}+\frac{b}{b-1}$\\
