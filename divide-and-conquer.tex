@@ -74,7 +74,44 @@
 
     % TODO 快速排序
 
-    % TODO 幂乘算法
+    \begin{frame}
+        \frametitle{幂乘算法}
+
+        计算$a^n$，其中$n$为自然数。
+
+        朴素做法需要$O(n)$次乘法。采用如下分治算法只需要$O(\log n)$次
+
+        \begin{itemize}
+            \item $a^n = a^{\frac{n}{2}} \times a^{\frac{n}{2}}$
+            \item $a^n = a^{\frac{n-1}{2}} \times a^{\frac{n-1}{2}} \times a$
+        \end{itemize}
+
+        该分治算法不仅可以运用在求实数的幂的问题，还可以运用在求矩阵的幂、求实数的倍数、求K步最短路等问题。
+        
+    \end{frame}
+
+    \begin{frame}
+        \frametitle{幂乘算法（应用）}
+
+        求Fibonacci数列的第$n$项$F_n$。
+
+        朴素算法需要做$O(n)$次加法，但是得益于
+
+        $$
+        \begin{bmatrix}
+            F_{n+1} & F_{n} \\
+            F_{n} & F_{n-1} \\
+        \end{bmatrix}
+        =
+        \begin{bmatrix}
+            1 & 1 \\
+            1 & 0 \\
+        \end{bmatrix} ^ n
+        $$
+
+        可以通过计算rhs求解$F_n$，而该过程可以应用幂乘算法，只需要做$O(\log n)$次乘法。
+
+    \end{frame}
 
     % TODO 改进分治算法：减少子问题个数
 
