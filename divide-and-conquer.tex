@@ -5,7 +5,7 @@
 \usepackage{algorithmicx}
 \usepackage{algpseudocode}
 
-\title{分治策略}
+\title{分治策略（续）}
 \author{李琦煜 \\ 杨思祺 \\ 张远鹏}
 \institute{算法设计与分析2020小班17}
 \date{2020年2月28日}
@@ -17,128 +17,28 @@
     \end{frame}
 
     \begin{frame}
-        \frametitle{基本思想}
-
-        设$P$是待求解的问题，$|P|$代表该问题的规模，一般的分治算法思路：
-
-        \begin{itemize}
-            \item 如果$|P|$不超过$c$，则直接求解。
-            \item 如果$|P|$超过$c$，则将$P$划分为子问题$P_1,P_2,\ldots,P_k$，递归地依次求解并归并得到$P$的答案。
-        \end{itemize}
-
-        通常都是递归算法，时间复杂度分析往往依赖于求解递推方程。
-
-    \end{frame}
-
-    \begin{frame}
-        \frametitle{分析方法}
-
-        \begin{itemize}
-            \item $T(n) = \sum_{i=1}^{k}{a_i T(n-i)} + f(n)$
-            \item $T(n) = a T(\frac{n}{b}) + d(n)$
-        \end{itemize}
-
-        第一类如汉诺塔分治算法，可以使用迭代、递归树、尝试法等求解。
-
-        第二类如二分检索和归并排序算法，可以使用迭代法、递归树、主定理等求解。
-
-    \end{frame}
-
-    \begin{frame}
-        \frametitle{芯片测试}
-
-        有$n$个芯片，其中好芯片比坏芯片至少多$1$片，需要通过测试从中找出$1$片好芯片。测试需要$2$片芯片互相测试，好芯片的报告是正确的，坏芯片的报告是不可靠的。请使用最少的测试次数找出$1$片好芯片。
-
-    \end{frame}
-
-    \begin{frame}
-        \frametitle{芯片测试}
-
-        \begin{itemize}
-            \item 如果剩下芯片数$k$为偶数，则分为$\frac{k}{2}$两两测试并按照如下规则筛选芯片
-                \begin{itemize}
-                    \item 如果两片芯片报告都为好，则任取一片。
-                    \item 否则两片芯片全都丢弃。
-                \end{itemize}
-            \item 如果剩下芯片数$k$为奇数，则分为$\lfloor \frac{k}{2} \rfloor$和单独的一片，组内两两测试并按上述规则筛选，单独的一片和其他所有芯片测试
-                \begin{itemize}
-                    \item 如果报告为坏的次数多于报告为好的次数，则丢弃。
-                    \item 如果报告为好的次数不少于报告为坏的次数，则该芯片为好芯片。
-                \end{itemize}
-            \item 如果剩下的芯片数不超过$3$，可以直接出解。
-        \end{itemize}
-
-        每轮至少筛去一半芯片，总时间复杂度$T(n) = T(\frac{n}{2}) + O(n) = O(n)$。
-
-    \end{frame}
-
-    % TODO 快速排序
-
-    \begin{frame}
         \frametitle{幂乘算法}
-
-        计算$a^n$，其中$n$为自然数。
-
-        朴素做法需要$O(n)$次乘法。采用如下分治算法只需要$O(\log n)$次
-
-        \begin{itemize}
-            \item $a^n = a^{\frac{n}{2}} \times a^{\frac{n}{2}}$
-            \item $a^n = a^{\frac{n-1}{2}} \times a^{\frac{n-1}{2}} \times a$
-        \end{itemize}
-
-        该分治算法不仅可以运用在求实数的幂的问题，还可以运用在求矩阵的幂、求整数乘积、求K步最短路等问题。
-        
-    \end{frame}
-
-    \begin{frame}
-        \frametitle{幂乘算法（应用）}
-
-        求Fibonacci数列的第$n$项$F_n$。
-
-        朴素算法需要做$O(n)$次加法，但是得益于
-
-        $$
-        \begin{bmatrix}
-            F_{n+1} & F_{n} \\
-            F_{n} & F_{n-1} \\
-        \end{bmatrix}
-        =
-        \begin{bmatrix}
-            1 & 1 \\
-            1 & 0 \\
-        \end{bmatrix} ^ n
-        $$
-
-        可以通过计算rhs求解$F_n$，而该过程可以应用幂乘算法，只需要做$O(\log n)$次乘法。
-
-    \end{frame}
-
-    % TODO 改进分治算法：减少子问题个数
-
-    % TODO 改进分治算法：增加预处理
-
-    \begin{frame}
-        \frametitle{更多：幂乘算法}
 
         幂乘算法优化$a\otimes a\otimes a\otimes \ldots \otimes a$的条件是$\otimes$具有结合律。
         
-        众所周知，加法、乘法以及矩阵乘法都是具有结合律的。
+        众所周知，加法、乘法以及矩阵乘法等都是具有结合律的。
 
         幂乘算法经常和动态规划、Floyd等其他算法结合在一起。
 
     \end{frame}
 
     \begin{frame}
-        \frametitle{更多：幂乘算法}
+        \frametitle{幂乘算法}
 
         有一排$2\times n$的空地，要用$1\times 2$的骨牌填满，骨牌可以旋转，求方案数。
+        例如，$n=2$时答案为$2$，$n=4$时答案为$5$。
 
         $n\leq 10^9$
 
     \end{frame}
 
     \begin{frame}
-        \frametitle{更多：幂乘算法}
+        \frametitle{幂乘算法}
 
         无向图上$n$个点，问负环最少包含多少条边。
 
@@ -147,12 +47,12 @@
     \end{frame}
 
     \begin{frame}
-        \frametitle{更多：幂乘算法}
+        \frametitle{幂乘算法}
 
         给定$n,k,r$，求
 
         $$
-        \sum_{i=0}^{n-1}{C_{ik+r}^{nk}} \quad mod \ P
+        \sum_{i=0}^{n-1}{C_{nk}^{ik+r}} \quad mod \ P
         $$
 
         $n\leq 10^9,0\leq r < k \leq 50$
@@ -160,28 +60,61 @@
     \end{frame}
 
     \begin{frame}
-        \frametitle{更多：快速排序}
+        \frametitle{快速排序}
 
         求序列中第$k$小的元素。
 
     \end{frame}
 
     \begin{frame}
-        \frametitle{更多：归并排序}
+        \frametitle{归并排序}
 
         求序列中的逆序对数。
 
     \end{frame}
 
     \begin{frame}
-        \frametitle{更多：最大子段和}
+        \frametitle{最大子段和}
 
         给出长度为$n$的整数序列$a_i$，求最大的子段和。
 
     \end{frame}
+    
+    \begin{frame}
+        \frametitle{二分查找}
+        
+        给出单峰序列$a_i$，即$\exists p,\ a_1 < a_2 < \ldots < a_p > a_{p+1} > \ldots > a_n$。设计算法寻找$p$。
+        
+    \end{frame}
+    
+    \begin{frame}
+        \frametitle{三分查找}
+        
+        给出单峰函数$f(x)\in C(R)$，即$\exists x_0$，满足
+        
+        \begin{itemize}
+            \item $\forall x < x_0, f'(x) > 0$
+            \item $\forall x > x_0, f'(x) < 0$
+        \end{itemize}
+        
+    \end{frame}
+    
+    \begin{frame}
+        \frametitle{习题2.6}
+        
+        给出一个$n\times m$的01矩阵$M$，满足每行的$1$都在该行的$0$之前，请设计算法在$O(n\log n)$时间内找到$1$最多的一行。
+        
+    \end{frame}
+    
+    \begin{frame}
+        \frametitle{习题2.26}
+        
+        给出平面上$n$个点代表$n$口油井，要建立一条东西向的主管道，然后每口油井都要向主管道沿最短路连线（南北向）。求最小总连线长度。
+        
+    \end{frame}
 
     \begin{frame}
-        END
+        THANKS
     \end{frame}
     
 \end{document}
